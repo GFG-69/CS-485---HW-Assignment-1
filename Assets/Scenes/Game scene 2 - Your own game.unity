@@ -113,6 +113,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!198 &201726960 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 19800002, guid: 62ea8a5ca94c546f29ba6dea8f379a7b,
+    type: 2}
+  m_PrefabInternal: {fileID: 383533478}
 --- !u!1 &356820077
 GameObject:
   m_ObjectHideFlags: 0
@@ -673,13 +678,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1152692291}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: -10, z: 12}
-  m_LocalScale: {x: 34, y: 68, z: 1}
+  m_LocalRotation: {x: 0.5, y: -0.5, z: 0.5, w: 0.5}
+  m_LocalPosition: {x: 8.9, y: -10, z: 8.2}
+  m_LocalScale: {x: 90, y: 60, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: -90, z: 0}
 --- !u!1 &1158070498
 GameObject:
   m_ObjectHideFlags: 0
@@ -727,8 +732,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1158070498}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 13}
-  m_LocalScale: {x: 34, y: 2, z: 68}
+  m_LocalPosition: {x: 0, y: 0, z: 15}
+  m_LocalScale: {x: 34, y: 2, z: 55}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
@@ -923,8 +928,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -90, y: -20}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: -460, y: -20}
+  m_SizeDelta: {x: 900, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1536500653
 MonoBehaviour:
@@ -1230,6 +1235,9 @@ MonoBehaviour:
   shot: {fileID: 1435085252090954, guid: 0ec6ce3de70abd4478d3ec2ba83edbb9, type: 2}
   shotSpawn: {fileID: 1127909826}
   fireRate: 0.25
+  mainCamera: {fileID: 990817647}
+  flare: {fileID: 1823142081}
+  core: {fileID: 201726960}
 --- !u!1 &1750046776
 GameObject:
   m_ObjectHideFlags: 0
@@ -1259,11 +1267,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hazard: {fileID: 1166972989899528, guid: 942d0d167b385384dbc57a98677d1545, type: 2}
-  spawnValues: {x: 8, y: 0, z: 30}
+  spawnValuesUp: {x: -10, y: 0, z: 30}
+  spawnValuesDown: {x: 10, y: 0, z: 30}
+  spawnValuesLeft: {x: 8, y: 0, z: -2}
+  spawnValuesRight: {x: 8, y: 0, z: 30}
   hazardCount: 10
-  spawnWait: 0.5
-  startWait: 1
-  waveWait: 4
+  spawnWait: 1
+  startWait: 4
+  waveWait: 2
   scoreText: {fileID: 1536500653}
   gameOverText: {fileID: 628084079}
   restartText: {fileID: 721594308}
@@ -1289,9 +1300,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 7b04c59dd84f14039b601e1abbe7b884, type: 3}
+  m_audioClip: {fileID: 8300000, guid: cf32669b1fbe4b64c88e44f524cbbb7e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1360,3 +1371,8 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!198 &1823142081 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 19800000, guid: 62ea8a5ca94c546f29ba6dea8f379a7b,
+    type: 2}
+  m_PrefabInternal: {fileID: 383533478}

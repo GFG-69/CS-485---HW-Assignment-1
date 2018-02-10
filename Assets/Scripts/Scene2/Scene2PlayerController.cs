@@ -11,7 +11,7 @@ public class Boundary
 public class Scene2PlayerController : MonoBehaviour
 {
     private Rigidbody rb;
-    private AudioSource audio;
+    private AudioSource audioSource;
     private float nextFire;
     private bool fireTwice;
 
@@ -23,15 +23,21 @@ public class Scene2PlayerController : MonoBehaviour
     public Transform shotSpawn;
     public float fireRate;
 
+    public Camera mainCamera;
+    public ParticleSystem flare;
+    public ParticleSystem core;
+    private float anglePlayer;
+
     private void Update()
     {
-        if (Input.GetButtonDown("Jump") || fireTwice == true)
+        RotatePlayer();
+        if (Input.GetButtonDown("Fire1") || fireTwice == true)
         {
             if (Time.time > nextFire)
             {
                 nextFire = Time.time + fireRate;
-                Instantiate(shot, shotSpawn.position, shotSpawn.rotation);
-                audio.Play();
+                Instantiate(shot, shotSpawn.position, Quaternion.Euler(0.0f, anglePlayer, 0.0f));
+                audioSource.Play();
                 fireTwice = false;
             }
             else
@@ -45,8 +51,9 @@ public class Scene2PlayerController : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        audio = GetComponent<AudioSource>();
+        audioSource = GetComponent<AudioSource>();
         fireTwice = false;
+        anglePlayer = 0;
     }
 
     private void FixedUpdate()
@@ -63,7 +70,19 @@ public class Scene2PlayerController : MonoBehaviour
                 0,
                 Mathf.Clamp(rb.position.z, boundary.zMin, boundary.zMax)
             );
+        rb.rotation = Quaternion.Euler(0.0f, anglePlayer, rb.velocity.x * -tilt);
+        flare.startRotation = (anglePlayer + 90) / 180 * Mathf.PI;
+        core.startRotation = (anglePlayer + 90) / 180 * Mathf.PI;
+    }
 
-        rb.rotation = Quaternion.Euler(0.0f, 0.0f, rb.velocity.x * -tilt);
+    void RotatePlayer ()
+    {
+        Vector3 pos = Input.mousePosition;
+        pos.z = 10;
+        anglePlayer = 180 / Mathf.PI * Mathf.Atan2(rb.position.x - mainCamera.ScreenToWorldPoint(pos).x, rb.position.z - mainCamera.ScreenToWorldPoint(pos).z);
+        if (anglePlayer >= 0)
+            anglePlayer = anglePlayer - 180;
+        else
+            anglePlayer = anglePlayer + 180;
     }
 }
