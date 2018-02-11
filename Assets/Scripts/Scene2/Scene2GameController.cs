@@ -27,6 +27,7 @@ public class Scene2GameController : MonoBehaviour
     private Vector3 direction;
 
     private int numberOfWave;
+    private int numberSeconds;
 
     private void Start()
     {
@@ -38,6 +39,7 @@ public class Scene2GameController : MonoBehaviour
         numberOfWave = 1;
         UpdateScore ();
         StartCoroutine (SpawnWaves ());
+        numberSeconds = 0;
     }
 
     private void Update()
@@ -47,7 +49,7 @@ public class Scene2GameController : MonoBehaviour
         {
             if (Input.GetKeyDown (KeyCode.R))
             {
-                Application.LoadLevel (Application.loadedLevel);
+                UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
             }
         }
     }
@@ -57,7 +59,7 @@ public class Scene2GameController : MonoBehaviour
         yield return new WaitForSeconds(startWait);
         while (!gameOver)
         {
-            for (int i = 0; i < (hazardCount + 5 * (numberOfWave - 1)); i++)
+            for (int i = 0; i < (hazardCount + 5 * (numberOfWave - 1)) && !gameOver; i++)
             {
                 int random;
                 if (numberOfWave > 4)
@@ -88,14 +90,19 @@ public class Scene2GameController : MonoBehaviour
                 if ((numberOfWave - 1) < 10)
                     yield return new WaitForSeconds(spawnWait - ((numberOfWave - 1) / 10));
             }
-            numberOfWave = numberOfWave + 1;
-            yield return new WaitForSeconds(waveWait);
             if (gameOver)
             {
                 restartText.text = "Press 'R' for Restart";
                 restart = true;
             }
+            else
+            {
+                numberOfWave = numberOfWave + 1;
+                yield return new WaitForSeconds(waveWait);
+            }
         }
+        restartText.text = "Press 'R' for Restart";
+        restart = true;
     }
 
     public void AddScore (int newScoreValue)
@@ -106,10 +113,12 @@ public class Scene2GameController : MonoBehaviour
 
     void UpdateScore ()
     {
-        if (Time.time < 3)
+        if (Time.time < 3 && !gameOver)
             scoreText.text = "Time to start: " + (3 - (int)Time.time);
-        else
+        else if (!gameOver)
             scoreText.text = "Time elapsed: " + ((int)Time.time - 3);
+        else
+            scoreText.text = "Time survived: " + numberSeconds;
         scoreText.text += " | Wave " + numberOfWave + " | Asteroids destroyed: " + score;
     }
 
@@ -117,5 +126,6 @@ public class Scene2GameController : MonoBehaviour
     {
         gameOverText.text = "Game Over!";
         gameOver = true;
+        numberSeconds = (int)Time.time - 3;
     }
 }

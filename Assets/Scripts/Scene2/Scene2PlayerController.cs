@@ -16,7 +16,6 @@ public class Scene2PlayerController : MonoBehaviour
     private bool fireTwice;
 
     public float speed;
-    public float tilt;
     public Boundary boundary;
 
     public GameObject shot;
@@ -70,9 +69,11 @@ public class Scene2PlayerController : MonoBehaviour
                 0,
                 Mathf.Clamp(rb.position.z, boundary.zMin, boundary.zMax)
             );
-        rb.rotation = Quaternion.Euler(0.0f, anglePlayer, rb.velocity.x * -tilt);
-        flare.startRotation = (anglePlayer + 90) / 180 * Mathf.PI;
-        core.startRotation = (anglePlayer + 90) / 180 * Mathf.PI;
+        rb.rotation = Quaternion.Euler(0.0f, anglePlayer, 0.0f);
+        var flareMain = flare.main;
+        flareMain.startRotation = (anglePlayer + 90) / 180 * Mathf.PI;
+        var coreMain = core.main;
+        coreMain.startRotation = (anglePlayer + 90) / 180 * Mathf.PI;
     }
 
     void RotatePlayer ()

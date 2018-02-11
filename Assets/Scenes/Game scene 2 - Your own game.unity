@@ -432,8 +432,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 85, y: -20}
-  m_SizeDelta: {x: 160, y: 30}
+  m_AnchoredPosition: {x: 85, y: -35}
+  m_SizeDelta: {x: 160, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &721594308
 MonoBehaviour:
@@ -1226,12 +1226,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  tilt: 1.5
   boundary:
     xMin: -7.5
     xMax: 7.5
     zMin: -0.5
-    zMax: 19
+    zMax: 27
   shot: {fileID: 1435085252090954, guid: 0ec6ce3de70abd4478d3ec2ba83edbb9, type: 2}
   shotSpawn: {fileID: 1127909826}
   fireRate: 0.25
@@ -1248,6 +1247,8 @@ GameObject:
   - component: {fileID: 1750046778}
   - component: {fileID: 1750046777}
   - component: {fileID: 1750046779}
+  - component: {fileID: 1750046780}
+  - component: {fileID: 1750046781}
   m_Layer: 0
   m_Name: Game Controller
   m_TagString: GameController
@@ -1371,6 +1372,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 0
+--- !u!114 &1750046780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1750046776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbda1c3d58db52a4abd083750a5ca878, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1750046781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1750046776}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ea1401f8759a49489fe205c3d5b4b16, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!198 &1823142081 stripped
 ParticleSystem:
   m_PrefabParentObject: {fileID: 19800000, guid: 62ea8a5ca94c546f29ba6dea8f379a7b,

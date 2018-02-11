@@ -5,9 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Scenes/Game scene 1 - Roll-a-ball.unity
-    guid: 1d085de0390987847a3d76162cadca11
+  - enabled: 1
+    path: Assets/Scenes/Game scene 3 - Selection Menu.unity
+    guid: ab9893515b83a814db221d442bb2f6a3
   - enabled: 1
     path: Assets/Scenes/Game scene 2 - Your own game.unity
     guid: 426da0c3276881d4c85dc42b3b3fdd8b
+  - enabled: 1
+    path: Assets/Scenes/Game scene 1 - Roll-a-ball.unity
+    guid: 1d085de0390987847a3d76162cadca11
